@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=RandomPanel()
+comment1.params=
+comment1.target=void\ setToColor()
+comment1.text=public\ void\ setToGray(){\n\ \ \ \ \ \ \ \ exp\ \=\ new\ RandomExpression();\n\ \ \ \ \ \ \ \ color\ \=\ false;\n}\ *
+comment2.params=g
+comment2.target=void\ paintComponent(java.awt.Graphics)
+comment3.params=x\ y\ exp
+comment3.target=int\ getShade(double,\ double,\ RandomExpression)
+numComments=4
