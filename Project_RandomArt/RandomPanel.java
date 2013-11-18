@@ -2,10 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.geom.*;
 /**
- * Class to print the random color and check grey or color.
+ * Class to print the random color.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nutjarat Chutiphongphimol ID53270337 
+ * @version 07/11/2013
  */
 
 public class RandomPanel extends JPanel{

@@ -5,8 +5,8 @@ import java.awt.event.*;
 /**
  * Create a JFrame and call JPanel inside
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nutjarat Chutiphongphimol ID53270337 
+ * @version 07/11/2013
  */
 public class RandomFrame
 {

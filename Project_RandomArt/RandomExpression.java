@@ -1,10 +1,10 @@
 import java.util.Stack;
 
 /**
- * Write a description of class RandomExpression here.
+ * RandomExpression Class.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nutjarat Chutiphongphimol ID53270337 
+ * @version 07/11/2013
  */
 class RandomExpression{
     
