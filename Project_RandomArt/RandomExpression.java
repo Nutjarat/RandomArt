@@ -6,7 +6,8 @@ import java.util.Stack;
  * @author Nutjarat Chutiphongphimol ID53270337 
  * @version 07/11/2013
  */
-class RandomExpression{
+class RandomExpression
+{
     
     private static final String OPERATORS = "SSSSCCCCAMR";
     private static final String OPERANDS = "xy";
@@ -18,9 +19,11 @@ class RandomExpression{
     
     // Currently single operance functions are S for sin and
     // C for cosine
-    private static int countSingleOperandFunctions() {
+    private static int countSingleOperandFunctions() 
+    {
         int total = 0;
-        for(int i = 0; i < OPERATORS.length(); i++){
+        for(int i = 0; i < OPERATORS.length(); i++)
+        {
             char ch = OPERATORS.charAt(i);
             if(SINGLE_OPERAND_OPERATORS.indexOf(ch) != -1)
                 total++;
@@ -36,39 +39,48 @@ class RandomExpression{
     // String representation of expression. Shown is postfix
     // notation to make for easier evaluation
     private final String randExpression;
+    private String functionString;
 
     // higher number means more complex
     // lowest allowed value = 0
     private final int EXPRESSION_COMPLEXITY; 
 
-    private static final int DEFAULT_MAX_COMPLEXITY = 10;;
-    private static final double DEFAULT_PROBABILITY_USE_OPERATOR_FOR_OPERAND = 0.85;
+    private static final int DEFAULT_MAX_COMPLEXITY = 12;;
+    private static final double DEFAULT_PROBABILITY_USE_OPERATOR_FOR_OPERAND = 0.95;
     
     // create a new Random Expression
     // with probabilityDeeper = 0.8
-    // and expressionComplexity = 10
-    public RandomExpression(){
+    // and expressionComplexity = 20
+    public RandomExpression()
+    {
         this(DEFAULT_MAX_COMPLEXITY, DEFAULT_PROBABILITY_USE_OPERATOR_FOR_OPERAND);
     }
 
     // pre: complexity >= 0, 0 <= deeper <= 1.0
     // higher values for complexity and deeper lead to
     // more complex expresions
-    public RandomExpression(int complexity, double deeper){
+    public RandomExpression(int complexity, double deeper)
+    {
         EXPRESSION_COMPLEXITY = complexity;
         PROBABILITY_DEEPER = deeper;
         randExpression = createExpression(0);
     }
 
     // a way to create a hard coded expression
-    public RandomExpression(String s){
+    public RandomExpression(String s)
+    {
         EXPRESSION_COMPLEXITY = -1;
         PROBABILITY_DEEPER = -1;        
         randExpression = s;
     }
 
 
-    private String createExpression(int currentLevel){
+    private String createExpression(int currentLevel)
+    {
+        String frontFunc = "";
+        String endFunc = "";
+        String centerFunc = "";
+        
         int op = (int)(Math.random() * OPERATORS.length());
         int oper1 = (int)(Math.random() * 2);
         int oper2 = (int)(Math.random() * 2);
@@ -77,7 +89,8 @@ class RandomExpression{
         boolean deeperSecondOperand = Math.random() < PROBABILITY_DEEPER;
 
         // single operand operators
-        if( op < NUM_SINGLE_OPERAND_FUNCTIONS){
+        if( op < NUM_SINGLE_OPERAND_FUNCTIONS)
+        {
             // base case, operands are simple values, x or y
             if(!deeperFirstOperand || currentLevel == EXPRESSION_COMPLEXITY){
                 result = OPERANDS.charAt(oper1) +  result;
@@ -87,7 +100,8 @@ class RandomExpression{
                 result = createExpression(currentLevel + 1) +  result;
             }
         }
-        else{
+        else
+        {
             // base case, operands are simple values, x or y
             if(currentLevel == EXPRESSION_COMPLEXITY || (!deeperFirstOperand && !deeperSecondOperand)){
                 result = OPERANDS.charAt(oper1) + "" + OPERANDS.charAt(oper2) + result;
@@ -112,9 +126,13 @@ class RandomExpression{
     // value of x and y.
     // pre: -1.0 <= x <= 1.0, -1.0 <= y <= 1.0, 
     // post: return a value between -1.0 and 1.0, inclusive
-    public double getResult(double x, double y){
+    public double getResult(double x, double y)
+    {
+        
+        
         Stack<Double> operands = new Stack<Double>();
-        for(int i = 0; i < randExpression.length(); i++){
+        for(int i = 0; i < randExpression.length(); i++)
+        {
             char ch = randExpression.charAt(i);
             if(ch == 'x')
                 operands.push(x);
@@ -151,21 +169,30 @@ class RandomExpression{
         return result;
     }
 
-    private static double ave(double x, double y){
+    private static double ave(double x, double y)
+    {
         return (x + y) / 2.0;
     }
 
-    public String toString(){
+    public String toString()
+    {
         return randExpression;
+    }
+    
+    public String getFunctionString() 
+    {
+        return functionString;
     }
 
     // from random art, test method
-    public static double getValExp(double x, double y){
+    public static double getValExp(double x, double y)
+    {
         return Math.sin(Math.PI * Math.sin(Math.PI * Math.sin(Math.PI * (Math.sin(Math.PI * Math.sin(Math.PI * Math.sin(Math.PI * Math.sin(Math.PI * Math.cos(Math.PI * y))))) * Math.cos(Math.PI * Math.sin(Math.PI * Math.cos(Math.PI * ave(Math.sin(Math.PI * y), (x * x)))))))));
     }
 
     // simple by hand test
-    public static double getValueHardCoded(double x, double y){
+    public static double getValueHardCoded(double x, double y)
+    {
         double pi = Math.PI;
         return Math.sin(pi * Math.cos(pi * Math.cos(pi * Math.sin(pi * ave(Math.cos(pi * y),y) * Math.sin(pi * x * y )))));
     } 

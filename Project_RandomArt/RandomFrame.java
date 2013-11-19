@@ -13,7 +13,8 @@ public class RandomFrame
     private JFrame theFrame;
     private RandomPanel thePanel;
 
-    public RandomFrame(){
+    public RandomFrame()
+    {
         theFrame = new JFrame();
         theFrame.setTitle("Random Art");
         theFrame.setLocation(100,100);
@@ -26,17 +27,21 @@ public class RandomFrame
         JPanel buttonPanel = new JPanel();
         //Generate Button
         buttonPanel.add(getButton("New Color"));
-
+        
         //Position of the component
         theFrame.add(thePanel, BorderLayout.CENTER);
         theFrame.add(buttonPanel, BorderLayout.SOUTH);
         theFrame.pack();
+        
     }
 
-    public JButton getButton(String label){
+    public JButton getButton(String label)
+    {
         JButton result = new JButton(label);
-        result.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
+        result.addActionListener(new ActionListener()
+        {
+                public void actionPerformed(ActionEvent e)
+                {
                     //Press to change the color
                     thePanel.setToColor();
                     //Repaint
@@ -46,7 +51,8 @@ public class RandomFrame
         return result;
     }
 
-    public void start(){
+    public void start()
+    {
         theFrame.setVisible(true);
     }
 }
